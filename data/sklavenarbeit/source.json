@@ -1,0 +1,21 @@
+{
+	"introduction" : [
+		["h1", "Sklaverei"],
+		["h2", "In der Antike"]
+	],
+	"activity" : [
+		[
+			[0, "h1", "Sklaverei"],
+			[0.5, "h2", "1923"],
+			[1, "p", "Zu dieser Zeit wurden die ersten Sklaven festgenommen."],
+			[1, "p", "Man nimmt an, dass Nero es war."]
+		],
+		[
+			[]
+		]
+	],
+	"quiz" : [
+		["question", "answer1", "answer2", "answer3 (optional)", "answer4 (optional)"]
+	],
+	"sources" : []
+}

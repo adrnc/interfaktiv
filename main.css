@@ -1,0 +1,110 @@
+main {
+	font-size: 2rem;
+}
+
+.page {
+	margin: 0 auto;
+	width: 60rem;
+	max-width: 100%;
+	height: 100%;
+	padding: 1rem;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	animation: fadein 0.2s ease-in 0s;
+}
+
+.center {text-align: center;}
+
+.activity-animation {
+	opacity: 0;
+	animation: fadein 0.2s ease-in 0s 1 normal forwards running;
+}
+
+@keyframes fadein {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+header {text-align: center;}
+
+.h1-welcome, .h1-loading {
+	color: var(--color1);
+	font-size: 4rem;
+	margin: 3rem 0 1rem 0;
+	user-select: none;
+}
+
+.h1-loading {
+	border-bottom: 0.5rem solid var(--color2);
+}
+
+.h2-choose {
+	color: var(--color2);
+	margin: 1rem 0;
+	user-select: none;
+}
+
+.topics {
+	min-height: 50%;
+	list-style-type: none;
+	padding: 0;
+	margin: 1rem 0;
+	width: 30rem;
+	max-width: 90%;
+}
+
+.topics li {
+	margin: 1rem 0;
+	user-select: none;
+}
+
+button {
+	position: relative;
+	width: 100%;
+	padding: 1.5rem;
+	font-size: 2rem;
+	border: none;
+	background-color: var(--background-color2);
+	cursor: pointer;
+	border-bottom: 0.5rem solid var(--color2);
+	box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
+	transition: border 0.15s, box-shadow 0.15s;
+}
+
+button:hover {
+	border-bottom-color: var(--color1);
+	box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.continuebutton {
+	margin-top: 3rem;
+	font-size: 1.8rem;
+	width: auto;
+}
+
+.overview li:first-child button {
+	font-size: 2.5rem;
+	font-weight: bold;
+}
+
+h1 {
+	margin: 1rem;
+	color: var(--color1);
+}
+h2, h3, h4, h5, h6 {
+	margin: 0.5rem;
+	color: var(--color2);
+}
+
+p {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+img, iframe {
+	width: 100%;
+	height: auto;
+}

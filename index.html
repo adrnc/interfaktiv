@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Alles über Sklaven, Sklavenarbeit und Sklavenhandel in der Antike">
+<meta name="keywords" content="antike, sklaven, sklavenarbeit, sklavenhandel">
+<meta name="author" content="Adrian Chroust">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ff9e1e">
+<link rel="icon" type="shortcut icon" href="/icons/favicon32.ico" sizes="32x32">
+<title>Sklavenarbeit in der Antike</title>
+
+<link rel="preload" as="style" href="/main.css">
+<script type="module" src="/app.js"></script>
+<style>
+:root {
+	font-size: 62.5%;
+	--font-family1: sans-serif;
+	--font-color1: #161616;
+	--background-color1: #ffeee0;
+	--background-color2: white;
+	--color1: #00a8be;
+	--color2: #ff9e1e;
+}
+
+* {box-sizing: border-box;}
+
+html, body, main {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	color: var(--font-color1);
+	font-family: var(--font-family1);
+	background-color: var(--background-color1);
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+}
+
+.hidden {display: none !important;}
+</style>
+<script type="application/json">
+[
+	["sklavenarbeit", "Sklavenarbeit"]
+]
+</script>
+</head>
+<body>
+<main class="js-main hidden">
+<div data-page="index" class="page hidden">
+	<header>
+		<h1 class="h1-welcome">Willkommen zu Latein und Co.</h1>
+		<h2 class="h2-choose">Wähle dein Thema!</h2>
+	</header>
+	<ul class="js-topics topics"></ul>
+	<footer class="hidden">
+		<button class="smallbutton" data-anchor="ueber">Über mich</button>
+	</footer>
+</div>
+<div data-page="über" class="page hidden"></div>
+<div data-page="laden" class="page hidden">
+	<h1 class="h1-loading">Lade</h1>
+</div>
+<div data-page="einfuehrung" class="js-introduction page hidden"></div>
+<div data-page="aktivitaet" class="js-activity center page hidden"></div>
+<div data-page="text" class="js-text center page hidden"></div>
+<div data-page="quiz" class="js-quiz page hidden"></div>
+<div data-page="ergebnisse" class="js-results page hidden"></div>
+<div data-page="quellen" class="js-sources page hidden"></div>
+</main>
+<link rel="stylesheet" href="/main.css">
+</body>
+</html>
