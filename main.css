@@ -3,17 +3,23 @@ main {
 }
 
 .page {
+	position: relative;
 	margin: 0 auto;
-	width: 60rem;
+	width: 80rem;
 	max-width: 100%;
-	height: 100%;
-	padding: 1rem;
+	min-height: 100%;
+	padding: 2rem 2rem 6rem 2rem;
 	overflow: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	overflow: visible;
 	align-items: center;
 	animation: fadein 0.2s ease-in 0s;
+}
+
+.activity {
+	padding-bottom: 10rem;
 }
 
 .center {text-align: center;}
@@ -57,7 +63,7 @@ header {text-align: center;}
 }
 
 .topics li {
-	margin: 1rem 0;
+	margin: 0;
 	user-select: none;
 }
 
@@ -65,6 +71,7 @@ button {
 	position: relative;
 	width: 100%;
 	padding: 1.5rem;
+	margin: 0.5rem 0;
 	font-size: 2rem;
 	border: none;
 	background-color: var(--background-color2);
@@ -72,6 +79,7 @@ button {
 	border-bottom: 0.5rem solid var(--color2);
 	box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
 	transition: border 0.15s, box-shadow 0.15s;
+	user-select: none;
 }
 
 button:hover {
@@ -80,31 +88,47 @@ button:hover {
 }
 
 .continuebutton {
-	margin-top: 3rem;
-	font-size: 1.8rem;
-	width: auto;
+	position: absolute;
+	bottom: 3rem;
+	left: calc(50% - 5rem);
+	width: 10rem;
 }
 
-.overview li:first-child button {
+.continuebutton.activity-animation {opacity: 0.2;}
+
+.overview li:first-child button, .mainbutton {
 	font-size: 2.5rem;
 	font-weight: bold;
 }
 
 h1 {
-	margin: 1rem;
+	margin: 2rem 0 0 0;
 	color: var(--color1);
 }
 h2, h3, h4, h5, h6 {
-	margin: 0.5rem;
+	margin: 1rem 0;
 	color: var(--color2);
 }
 
 p {
 	font-size: 2rem;
-	font-weight: bold;
+	margin: 0 0 1.5rem 0;
 }
 
 img, iframe {
 	width: 100%;
 	height: auto;
 }
+
+strong {
+	font-weight: bold;
+	color: var(--color1);
+}
+
+a {
+	display: inline-block;
+	text-decoration: none;
+	color: var(--color1);
+}
+
+a:link {box-shadow: inset 0 -0.1rem var(--color2);}

@@ -33,9 +33,9 @@ async function loadTopic(event) {
 	while (introduction.firstChild) introduction.removeChild(introduction.firstChild);
 	topicData.introduction.forEach(item => {
 		const element = createElement(item[0]);
-		if (content.includes(item[0])) element.appendChild(createTextNode(item[1]));
+		if (content.includes(item[0])) element.innerHTML = item[1].replace(/>/gm, '</strong>').replace(/<(?!\/strong>)/gm, '<strong>');
 		else if (media.includes(item[0])) {
-			element.src = item[1];
+			element.src = `/data/${topic}/${item[1]}`;
 			if (item[2]) element.alt = element.title = item[2];
 		}
 		introduction.appendChild(element);
@@ -76,9 +76,9 @@ async function loadTopic(event) {
 			const element = createElement(subItem[1]);
 			delay += subItem[0];
 
-			if (content.includes(subItem[1])) element.appendChild(createTextNode(subItem[2]));
+			if (content.includes(subItem[1])) element.innerHTML = subItem[2].replace(/>/gm, '</strong>').replace(/<(?!\/strong>)/gm, '<strong>');
 			else if (media.includes(subItem[1])) {
-				element.src = subItem[2];
+				element.src = `/data/${topic}/${subItem[2]}`;
 				if (subItem[3]) element.alt = element.title = subItem[3];
 			}
 
@@ -102,7 +102,39 @@ async function loadTopic(event) {
 		activity.appendChild(subActivity);
 	});
 
+	const lastActivity = createElement('div'),
+	whatNext = createElement('h2'),
+	quizButton = createElement('button'),
+	homeButton = createElement('button');
+
+	quizButton.dataset.anchor = 'quiz-1';
+	homeButton.dataset.anchor = 'einfuehrung';
+
+	lastActivity.dataset.subpage = subnumber;
+	lastActivity.className = 'activity-animation hidden';
+	quizButton.className = 'mainbutton';
+
+	whatNext.appendChild(createTextNode('Was nun?'));
+	quizButton.appendChild(createTextNode('Mach das Quiz'));
+	homeButton.appendChild(createTextNode('Zurück zum Start'));
+
+	lastActivity.appendChild(whatNext);
+	lastActivity.appendChild(quizButton);
+	lastActivity.appendChild(homeButton);
+	activity.appendChild(lastActivity);
 	buttonMap(activity);
+
+	topicData.sources.forEach(item => {
+		const p = createElement('p'),
+		a = createElement('a');
+
+		a.appendChild(createTextNode(item[0]));
+		if (item[1]) a.href = item[1];
+
+		p.appendChild(a);
+		sources.appendChild(p);
+	});
+
 	history.replaceState(null, document.title, '#einfuehrung');
 	pageSelect();
 }
