@@ -190,10 +190,14 @@ async function loadTopic(event) {
 	});
 	buttonMap(quiz);
 
-	const	quizBack = createElement('button');
+	const resultsHead = createElement('h1'),
+	quizBack = createElement('button');
+
+	resultsHead.appendChild(createTextNode('Ergebnisse'));
 	quizBack.dataset.anchor = 'einfuehrung';
 	quizBack.appendChild(createTextNode('Zurück zum Start'));
 	quizBack.style.width = 'auto';
+	results.insertBefore(resultsHead, results.firstChild);
 	results.appendChild(quizBack);
 	buttonMap(results);
 
