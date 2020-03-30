@@ -114,7 +114,7 @@ button:hover {
 	border-bottom-color: var(--color2);
 }
 
-.correctanswer, .correctanswer:hover {border-bottom-color: #5aff55;}
+.correctanswer, .correctanswer:hover {border-bottom-color: #07ea00;}
 .wronganswer, .wronganswer:hover {border-bottom-color: #ff6b6b;}
 
 .correctchoice {
