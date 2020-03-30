@@ -67,6 +67,8 @@ header {text-align: center;}
 	user-select: none;
 }
 
+.sources {word-break: break-word;}
+
 button {
 	position: relative;
 	width: 100%;
@@ -112,7 +114,7 @@ button:hover {
 	border-bottom-color: var(--color2);
 }
 
-.correctanswer, .correctanswer:hover {border-bottom-color: #98ff94;}
+.correctanswer, .correctanswer:hover {border-bottom-color: #5aff55;}
 .wronganswer, .wronganswer:hover {border-bottom-color: #ff6b6b;}
 
 .correctchoice {
@@ -133,10 +135,12 @@ button:hover {
 h1 {
 	margin: 2rem 0 0 0;
 	color: var(--color1);
+	text-align: center;
 }
 h2, h3, h4, h5, h6 {
 	margin: 1rem 0;
 	color: var(--color2);
+	text-align: center;
 }
 
 p {
