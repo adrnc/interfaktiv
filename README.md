@@ -1,2 +1,2 @@
-# Latein Sklavenarbeit
-Interaktive Website zur Sklavenarbeit in der Antike
+# Latein und Co.
+Interaktive Website zu Latein und ähnlichem!
