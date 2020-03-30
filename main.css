@@ -67,7 +67,10 @@ header {text-align: center;}
 	user-select: none;
 }
 
-.sources {word-break: break-word;}
+.sources {
+	word-break: break-word;
+	width: 100%;
+}
 
 button {
 	position: relative;
