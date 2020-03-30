@@ -15,7 +15,7 @@
 			[2, "p", "Die meisten waren <Kriegsgefangene> eines feindlichen Staates."],
 			[2, "p", "Andere waren Bürger, die <Piraten oder Raubzügen zum Opfer gefallen> waren."],
 			[2, "p", "Konnte man seine <Schulden> gegenüber einer Person nicht bezahlen, wurde man ihr Sklave."],
-			[2.5, "p", "Es bestand auch die Möglichkeit Sklaven zu <importieren>."]
+			[2.5, "p", "Es bestand auch die Möglichkeit Sklaven aus anderen Ländern zu <importieren>."]
 		],
 		[
 			[0, "h2", "Welche Arbeiten verrichtete ein Sklave?"],
@@ -39,7 +39,7 @@
 			[2, "p", "Sie waren selbst auch <nicht rechtsfähig>."],
 			[2, "p", "Ihr Herr vertrat sie in allen Belangen rechtlicher Natur."],
 			[2.5, "p", "Dem Herren war es <nicht erlaubt>, seine <Sklaven zu ermorden>."],
-			[2.5, "p", "Wurden Sklaven selbst eines Verbechens angeklagt, handelte es sich bei der <Strafe> meist um <Peitschenhiebe>."]
+			[2.5, "p", "Wurden Sklaven selbst eines Verbrechens angeklagt, handelte es sich bei der <Strafe> meist um <Peitschenhiebe>."]
 		],
 		[
 			[0, "h2", "Wie konnten Sklaven die Freiheit erlangen?"],
@@ -61,7 +61,7 @@
 		[
 			[0, "h2", "Wer war ein Sklave?"],
 			[1, "p", "Bei den meisten Sklaven im römischen Reich handelte es sich ursprünglich um <Schuldsklaven>."],
-			[2.5, "p", "Später stieg durch die vielen Eroberungen die Anzahl an <kriegsgefangene> Sklaven."],
+			[2.5, "p", "Später stieg durch die vielen Eroberungen die Anzahl an <kriegsgefangenen> Sklaven."],
 			[2.5, "p", "Bei bestimmten <Verbrechen> war eine Versklavung auch möglich."],
 			[2, "p", "<Kinder> von Sklaven wurden auch automatisch zu Sklaven."]
 		],
@@ -94,13 +94,18 @@
 		]
 	],
 	"quiz" : [
-		["question", "answer1 (correct)", "answer2", "answer3 (optional)", "answer4 (optional)"],
-		["question", "answer1", "answer2", "answer3 (optional)", "answer4 (optional)"]
+		["Was war KEINE Sklavenarbeit in Griechenland?", ["Bäcker", false], ["Weber", false], ["Handwerker", false], ["Krieger", true]],
+		["Durften griechische Sklaven ihre Religion ausüben?", ["Ja", true], ["Nein", false], ["Vielleicht?", false]],
+		["Welche Möglichkeiten hatten Sklaven in Griechenland, um die Freiheit zu erlangen?", ["Sie konnten sich freikaufen.", true], ["Ihr Herr entschied das für sie.", true], ["Sklaven waren nie komplett frei.", true]],
+		["Was war die Meinung der Stoiker zur Sklaverei?", ["Sie fanden es super!", false], ["Sie sahen sie als Menschen wie sie an.", true], ["Sie baten um Gesetzesänderungen.", false]],
+		["Wo waren im Römischen Reich KEINE Sklaven zu finden?", ["im Haus seines Herren", false], ["in der Landwirtschaft", false], ["beim Militär", true], ["bei Gladiatorenkämpfen", false]],
+		["Wie waren Sklaven im Römischen Recht vertreten?", ["als Verbrecher", false], ["als Person", false], ["als Eigentum", true], ["als Gegenstand", true]],
+		["Wie konnte ein Sklave in Rom die Freiheit erlangen?", ["per iustitiam", false], ["per mensam", true], ["per censum", true], ["per regis", false]]
 	],
 	"sources" : [
-		["Veritas"],
-		["Sklaverei", "https://www.youtube.com/watch?v=CkVBOqEGBVY"],
-		["Wiki Griechen", "https://de.wikipedia.org/wiki/Sklaverei_im_antiken_Griechenland"],
-		["Wiki Römer", "https://de.wikipedia.org/wiki/Sklaverei_im_R%C3%B6mischen_Reich"]
+		["Kauzky, Wolfram; Hissek, Oliver: Medias In Res!. Texte L4. Auflage. Linz: VERITAS-VERLAG, 2019 (Reihe 8)", "https://www.veritas.at/medias-in-res-8-texte.html"],
+		["o.V.: Slavery - Ancient Greek Society 09. https://www.youtube.com/watch?v=CkVBOqEGBVY [Zugriff: 30.3.2020]", "https://www.youtube.com/watch?v=CkVBOqEGBVY"],
+		["o.V.: Sklaverei im antiken Griechenland. https://de.wikipedia.org/wiki/Sklaverei_im_antiken_Griechenland [Zugriff: 30.3.2020]", "https://de.wikipedia.org/wiki/Sklaverei_im_antiken_Griechenland"],
+		["o.V.: Sklaverei im Römischen Griechenland. https://de.wikipedia.org/wiki/Sklaverei_im_Römischen_Reich [Zugriff: 30.3.2020]", "https://de.wikipedia.org/wiki/Sklaverei_im_R%C3%B6mischen_Reich"]
 	]
 }

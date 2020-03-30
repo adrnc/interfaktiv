@@ -76,9 +76,10 @@ button {
 	border: none;
 	background-color: var(--background-color2);
 	cursor: pointer;
+	opacity: 1;
 	border-bottom: 0.5rem solid var(--color2);
 	box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
-	transition: border 0.15s, box-shadow 0.15s;
+	transition: border 0.3s, box-shadow 0.3s, opacity 0.3s, color 0.3s, background-color 0.3s;
 	user-select: none;
 }
 
@@ -99,6 +100,34 @@ button:hover {
 .overview li:first-child button, .mainbutton {
 	font-size: 2.5rem;
 	font-weight: bold;
+}
+
+.invisiblebutton {
+	cursor: auto;
+	opacity: 0;
+}
+.selectedbutton, .selectedbutton:hover {
+	background-color: var(--color1);
+	color: white;
+	border-bottom-color: var(--color2);
+}
+
+.correctanswer, .correctanswer:hover {border-bottom-color: #98ff94;}
+.wronganswer, .wronganswer:hover {border-bottom-color: #ff6b6b;}
+
+.correctchoice {
+	color: white;
+	background-color: #00ca00;
+}
+
+.wrongchoice {
+	color: white;
+	background-color: #ff0000;
+}
+
+.answerwidth {
+	margin: 0 auto 3rem auto;
+	width: fit-content;
 }
 
 h1 {
@@ -126,7 +155,6 @@ strong {
 }
 
 a {
-	display: inline-block;
 	text-decoration: none;
 	color: var(--color1);
 }
