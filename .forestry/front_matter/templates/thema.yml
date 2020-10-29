@@ -55,7 +55,7 @@ fields:
       config:
         min: 
         max: 
-        labelField: 
+        labelField: text
       label: Element
     config:
       min: 
