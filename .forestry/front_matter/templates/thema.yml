@@ -1,0 +1,47 @@
+---
+label: Thema
+hide_body: true
+fields:
+- type: field_group_list
+  name: Data
+  label: Data
+  fields:
+  - type: text
+    name: name
+    label: name
+  - type: text
+    name: author
+    label: author
+  - type: boolean
+    name: archived
+    label: archived
+  - type: list
+    name: activity
+    label: activity
+  - type: field_group_list
+    name: quiz
+    label: quiz
+    fields:
+    - type: text
+      name: question
+      label: question
+    - type: field_group_list
+      name: answers
+      label: answers
+      fields:
+      - type: text
+        name: text
+        label: text
+      - type: boolean
+        name: correct
+        label: correct
+  - type: field_group_list
+    name: sources
+    label: sources
+    fields:
+    - type: textarea
+      name: text
+      label: text
+    - type: text
+      name: url
+      label: url
