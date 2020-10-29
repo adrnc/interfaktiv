@@ -88,22 +88,25 @@ async function loadTopic(event) {
 		subActivity.className = 'hidden';
 
 		let delay = 0;
-		item.forEach(subItem => {
-			const element = createElement(subItem.type);
-			delay += subItem.delay || 0;
+		let count = 0;
+		[item.title, ...(item.subtitle ? [item.subtitle] : []), ...item.elements].forEach(subItem => {
+			const isImg = subItem.match(/^https?:\/\//g);
+			const tag = item.section && count == 0 ? 'h1' : count == 0 || (count == 1 && item.section && item.subtitle) ? 'h2' : isImg ? 'img' : 'p';
+			const isValidImg = isImg && tag != 'h1' && tag != 'h2';
+			const element = createElement(tag);
+			const currentDelay = delay;
+			delay += isValidImg ? 300 : subItem.length * 20;
+			count++;
 
-			if (content.includes(subItem.type)) element.innerHTML = subItem.text.replace(/>/gm, '</strong>').replace(/<(?!\/strong>)/gm, '<strong>');
-			else if (media.includes(subItem.type)) {
-				element.src = subItem.url;
-				if (subItem.text) element.alt = element.title = subItem.text;
-			}
+			if (isValidImg) element.src = subItem;
+			else element.innerHTML = subItem.replace(/>/gm, '</strong>').replace(/<(?!\/strong>)/gm, '<strong>');
 
 			text.appendChild(element);
 
 			const elementClone = element.cloneNode(true);
 
 			elementClone.className = 'activity-animation';
-			elementClone.style.animationDelay = `${delay}ms`;
+			elementClone.style.animationDelay = `${currentDelay + 500}ms`;
 
 			subActivity.appendChild(elementClone);
 		});
