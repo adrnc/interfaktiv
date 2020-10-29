@@ -55,7 +55,7 @@ fields:
       min: 
       max: 
       labelField: 
-    label: Aktivität
+    label: Aktivitätsseite
   - type: field_group_list
     name: quiz
     fields:
