@@ -1,47 +1,105 @@
 ---
-label: Thema
+label: Themen
 hide_body: true
 fields:
 - type: field_group_list
   name: Data
-  label: Data
   fields:
   - type: text
     name: name
-    label: name
+    label: Titel
+    config:
+      required: true
   - type: text
     name: author
-    label: author
+    label: Ersteller
+    description: optional
   - type: boolean
     name: archived
-    label: archived
-  - type: list
-    name: activity
-    label: activity
+    label: Archiviert
+    default: false
+  - name: activity
+    type: field_group_list
+    fields:
+    - name: elements
+      type: field_group_list
+      fields:
+      - name: type
+        type: select
+        default: []
+        config:
+          required: false
+          options:
+          - h1
+          - h2
+          - h3
+          - h4
+          - h5
+          - h6
+          - p
+          - img
+          source:
+            type: simple
+            section: 
+            file: 
+            path: 
+        label: Typ
+        description: 'h1 - h6: Überschrift 1-6<br>p: Satz/Absatz<br>img: Bild'
+      - name: text
+        type: text
+        config:
+          required: false
+        description: Mit <strong>&lt;<em>text</em>&gt; </strong>kann man Text färbig
+          anzeigen.
+        label: Text
+      config:
+        min: 
+        max: 
+        labelField: 
+      label: Element
+    config:
+      min: 
+      max: 
+      labelField: 
+    label: Aktivitätsseite
   - type: field_group_list
     name: quiz
-    label: quiz
     fields:
     - type: text
       name: question
-      label: question
+      label: Frage
+      config:
+        required: true
     - type: field_group_list
       name: answers
-      label: answers
       fields:
       - type: text
         name: text
-        label: text
+        label: Antwort
+        config:
+          required: true
       - type: boolean
         name: correct
-        label: correct
+        label: richtige Antwort
+      label: Antwort
+      config:
+        labelField: text
+    label: Quizfrage
   - type: field_group_list
     name: sources
-    label: sources
     fields:
-    - type: textarea
-      name: text
-      label: text
+    - name: text
+      type: text
+      config:
+        required: true
+      label: Quelle
     - type: text
       name: url
-      label: url
+      label: URL
+      description: 'optional<br>zb.: https://example.com/'
+    label: Quelle
+    config:
+      labelField: sources
+  label: Thema
+pages:
+- data.json
