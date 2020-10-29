@@ -21,42 +21,36 @@ fields:
   - name: activity
     type: field_group_list
     fields:
-    - name: elements
-      type: field_group_list
-      fields:
-      - name: type
-        type: select
-        default: []
-        config:
-          required: false
-          options:
-          - h1
-          - h2
-          - h3
-          - h4
-          - h5
-          - h6
-          - p
-          - img
-          source:
-            type: simple
-            section: 
-            file: 
-            path: 
-        label: Typ
-        description: 'h1 - h6: Überschrift 1-6<br>p: Satz/Absatz<br>img: Bild'
-      - name: text
-        type: text
-        config:
-          required: false
-        description: Mit <strong>&lt;<em>text</em>&gt; </strong>kann man Text färbig
-          anzeigen.
-        label: Text
+    - name: section
+      type: boolean
+      label: Kapitel
+      description: Markiert den Beginn einer neuen Kapitels:<br>Der Titel ist größer
+        und eine Unter-Überschrift kann gesetzt werden.
+    - name: title
+      type: text
       config:
+        required: true
+      label: Titel
+    - name: subtitle
+      type: text
+      config:
+        required: false
+      label: Unter-Überschrift
+      description: optional
+      showOnly:
+        field: section
+        value: true
+    - name: elements
+      type: list
+      config:
+        use_select: false
         min: 
         max: 
-        labelField: text
-      label: Element
+        source:
+          type: simple
+      label: Elemente
+      description: 'Text oder eine Bild-URL:<br>Text kann mit so <strong>&lt;<em>text</em>&gt;
+        </strong>eingefärbt werden.<br>Bild-URL z.B.: https://example.org/image.png'
     config:
       min: 
       max: 
