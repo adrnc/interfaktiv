@@ -10,7 +10,9 @@ addClass = (element, className = hidden) => element.classList.add(className),
 removeClass = (element, className = hidden) => element.classList.remove(className),
 wait = seconds => new Promise(resolve => setTimeout(resolve, seconds)),
 
-data = fetch('/data.json').then(response => response.json());
+data = fetch('/data.json')
+	.then(response => response.json())
+	.then(topics => topics.filter(topic => !topic.archived));
 
 function pageSelect()  {
 	const page = location.hash ? location.hash.substr(1).split('-') : ['index'];
@@ -47,15 +49,15 @@ async function loadTopic(event) {
 	while (results.firstChild) results.removeChild(results.firstChild);
 	while (sources.firstChild) sources.removeChild(sources.firstChild);
 
-	topicData.start.forEach(item => {
-		const element = createElement(item.type);
-		if (content.includes(item.type)) element.innerHTML = item.text.replace(/>/gm, '</strong>').replace(/<(?!\/strong>)/gm, '<strong>');
-		else if (media.includes(item.type)) {
-			element.src = item.url;
-			if (item.text) element.alt = element.title = item.text;
-		}
-		introduction.appendChild(element);
-	});
+	const name = createElement('h1');
+	name.appendChild(createTextNode(topicData.name));
+	introduction.appendChild(name);
+
+	if (topicData.author) {
+		const author = createElement('h2');
+		author.appendChild(createTextNode(topicData.author));
+		introduction.appendChild(author);
+	}
 
 	const contentList = createElement('ul'),
 	contentItems = [

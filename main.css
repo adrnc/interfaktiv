@@ -48,13 +48,18 @@ footer {
 	user-select: none;
 }
 
+.h1-welcome-highlight {
+	color: var(--color2);
+}
+
 .h1-loading {
 	border-bottom: 0.5rem solid var(--color2);
 }
 
 .h2-choose {
-	color: var(--color2);
-	margin: 1rem 0;
+	color: var(--font-color1);
+	margin: 0.5rem 0 2rem 0;
+	font-weight: normal;
 	user-select: none;
 }
 
@@ -91,6 +96,7 @@ button {
 	box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
 	transition: border 0.3s, box-shadow 0.3s, opacity 0.3s, color 0.3s, background-color 0.3s;
 	user-select: none;
+	font-family: var(--font-family1);
 }
 
 button:hover {
@@ -109,7 +115,7 @@ button:hover {
 
 .continuebutton.button-animation {
 	opacity: 0.2;
-	animation: button-animation 0.2s;
+	animation: button-animation 0.2s forwards;
 }
 
 @keyframes button-animation {
@@ -154,11 +160,13 @@ h1 {
 	margin: 2rem 0 0 0;
 	color: var(--color1);
 	text-align: center;
+	letter-spacing: 0.1rem;
 }
 h2, h3, h4, h5, h6 {
 	margin: 1rem 0;
 	color: var(--color2);
 	text-align: center;
+	letter-spacing: 0.1rem;
 }
 
 p {

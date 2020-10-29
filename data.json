@@ -1,16 +1,8 @@
 [
 	{
-		"name": "Sklavenarbeit",
-		"start": [
-			{
-				"type": "h1",
-				"text": "Sklaverei"
-			},
-			{
-				"type": "h2",
-				"text": "In der Antike"
-			}
-		],
+		"name": "Sklaverei in der Antike",
+		"author": "Adrian Chroust",
+		"archived": false,
 		"activity": [
 			[
 				{

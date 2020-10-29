@@ -11,10 +11,12 @@
 		<link rel="preload" as="style" href="/main.css">
 		<link rel="preload" as="fetch" href="/data.json" crossorigin>
 		<script type="module" src="/app.js"></script>
+		<link rel="preconnect" href="https://fonts.gstatic.com/">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.media='all'">
 		<style>
 			:root {
 				font-size: 62.5%;
-				--font-family1: "Century Gothic", "Trebuchet MS", "Calibri", "Segoe UI", sans-serif;
+				--font-family1: "Montserrat", "Century Gothic", "Apple Gothic", AppleGothic, "URW Gothic L", "Avant Garde", Futura, sans-serif;
 				--font-color1: #5f5342;
 				--background-color1: #ffeee0;
 				--background-color2: white;
@@ -42,12 +44,12 @@
 		<main class="js-main">
 			<div data-page="index" class="js-index index page hidden">
 				<header>
-					<h1 class="h1-welcome">Willkommen zu Latein und Co.</h1>
-					<h2 class="h2-choose">Wähle dein Thema!</h2>
+					<h1 class="h1-welcome">Willkommen zu <span class="h1-welcome-highlight">Interfaktiv</span></h1>
+					<h2 class="h2-choose">Wähle dein Thema:</h2>
 				</header>
 				<ul class="js-topics topics"></ul>
 				<footer>
-					von <a href="https://github.com/adrianchroust/latein-und-co">Adrian Chroust</a>
+					von <a href="https://github.com/adrianchroust/interfaktiv">Adrian Chroust</a>
 				</footer>
 			</div>
 			<div data-page="js-loading laden" class="page">
