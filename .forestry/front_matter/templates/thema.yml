@@ -99,7 +99,7 @@ fields:
       description: 'optional<br>zb.: https://example.com/'
     label: Quelle
     config:
-      labelField: sources
+      labelField: text
   label: Thema
 pages:
 - data.json
