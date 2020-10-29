@@ -4,8 +4,6 @@ createElement = document.createElement.bind(document),
 createTextNode = document.createTextNode.bind(document),
 
 hidden = 'hidden',
-content = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'],
-media = ['img'],
 addClass = (element, className = hidden) => element.classList.add(className),
 removeClass = (element, className = hidden) => element.classList.remove(className),
 wait = seconds => new Promise(resolve => setTimeout(resolve, seconds)),
