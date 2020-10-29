@@ -1,2 +1,2 @@
-# Interfaktiv
-[Interaktive Website](https://interfaktiv.acdn.dev/) Lern-Website für Begeisterte!
+# interFaktiv
+ist eine [interaktive Lern-Website](https://interfaktiv.acdn.dev/) für Wissensbegeisterte!

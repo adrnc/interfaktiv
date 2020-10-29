@@ -7,7 +7,8 @@
 		<meta name="author" content="Adrian Chroust">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="theme-color" content="#ff9e1e">
-		<title>Latein und Co.</title>
+		<title>interFaktiv</title>
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 		<link rel="preload" as="style" href="/main.css">
 		<link rel="preload" as="fetch" href="/data.json" crossorigin>
 		<script type="module" src="/app.js"></script>
@@ -20,6 +21,7 @@
 				--font-color1: #5f5342;
 				--background-color1: #ffeee0;
 				--background-color2: white;
+				--background-color3: #ffbf8a;
 				--color1: #00a8be;
 				--color2: #ff9e1e;
 			}
@@ -36,15 +38,49 @@
 				background-color: var(--background-color1);
 				-webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
 			}
+			
+			h1 {
+				margin: 2rem 0 0 0;
+				color: var(--color1);
+				text-align: center;
+				letter-spacing: 0.1rem;
+			}
 
 			.hidden {display: none !important;}
+
+			.page {
+				position: relative;
+				margin: 0 auto;
+				width: 80rem;
+				max-width: 100%;
+				min-height: 100%;
+				padding: 2rem 2rem 6rem 2rem;
+				overflow: auto;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				overflow: visible;
+				align-items: center;
+				animation: fadein 0.2s ease-in 0s;
+			}
+
+			.h1-welcome, .h1-loading {
+				color: var(--color1);
+				font-size: 4rem;
+				margin: 3rem 0 1rem 0;
+				user-select: none;
+			}
+
+			.h1-loading {
+				border-bottom: 0.5rem solid var(--color2);
+			}
 		</style>
 	</head>
 	<body>
 		<main class="js-main">
 			<div data-page="index" class="js-index index page hidden">
 				<header>
-					<h1 class="h1-welcome">Willkommen zu <span class="h1-welcome-highlight">Interfaktiv</span></h1>
+					<h1 class="h1-welcome">Willkommen bei <span class="h1-welcome-highlight">interFaktiv</span></h1>
 					<h2 class="h2-choose">Wähle dein Thema:</h2>
 				</header>
 				<ul class="js-topics topics"></ul>
