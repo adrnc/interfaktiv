@@ -18,8 +18,8 @@ main {
 	animation: fadein 0.2s ease-in 0s;
 }
 
-.activity {
-	padding-bottom: 10rem;
+.index, .activity, .quiz {
+	padding-bottom: 12rem;
 }
 
 .center {text-align: center;}
@@ -35,6 +35,11 @@ main {
 }
 
 header {text-align: center;}
+
+footer {
+	position: absolute;
+	bottom: 4rem;
+}
 
 .h1-welcome, .h1-loading {
 	color: var(--color1);
@@ -94,13 +99,23 @@ button:hover {
 }
 
 .continuebutton {
-	position: absolute;
+	position: fixed;
+	z-index: 10;
 	bottom: 3rem;
 	left: calc(50% - 5rem);
 	width: 10rem;
+	opacity: 0.8;
 }
 
-.continuebutton.activity-animation {opacity: 0.2;}
+.continuebutton.button-animation {
+	opacity: 0.2;
+	animation: button-animation 0.2s;
+}
+
+@keyframes button-animation {
+	from {opacity: 0.2;}
+	to {opacity: 0.8;}
+}
 
 .overview li:first-child button, .mainbutton {
 	font-size: 2.5rem;
@@ -148,12 +163,13 @@ h2, h3, h4, h5, h6 {
 
 p {
 	font-size: 2rem;
-	margin: 0 0 1.5rem 0;
+	margin: 1.5rem 0;
 }
 
 img, iframe {
 	width: 100%;
 	height: auto;
+	margin: 1.5rem 0;
 }
 
 strong {

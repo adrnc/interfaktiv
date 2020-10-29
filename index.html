@@ -1,71 +1,65 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="description" content="Latein in seiner enormen Vielfalt">
-<meta name="keywords" content="latein, geschichte, quiz">
-<meta name="author" content="Adrian Chroust">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#ff9e1e">
-<title>Latein und Co.</title>
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Latein in seiner enormen Vielfalt">
+		<meta name="keywords" content="latein, geschichte, quiz">
+		<meta name="author" content="Adrian Chroust">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ff9e1e">
+		<title>Latein und Co.</title>
+		<link rel="preload" as="style" href="/main.css">
+		<link rel="preload" as="fetch" href="/data.json" crossorigin>
+		<script type="module" src="/app.js"></script>
+		<style>
+			:root {
+				font-size: 62.5%;
+				--font-family1: "Century Gothic", "Trebuchet MS", "Calibri", "Segoe UI", sans-serif;
+				--font-color1: #5f5342;
+				--background-color1: #ffeee0;
+				--background-color2: white;
+				--color1: #00a8be;
+				--color2: #ff9e1e;
+			}
 
-<link rel="preload" as="style" href="/main.css">
-<script type="module" src="/app.js"></script>
-<style>
-:root {
-	font-size: 62.5%;
-	--font-family1: "Century Gothic", "Trebuchet MS", "Calibri", "Segoe UI", sans-serif;
-	--font-color1: #5f5342;
-	--background-color1: #ffeee0;
-	--background-color2: white;
-	--color1: #00a8be;
-	--color2: #ff9e1e;
-}
+			* {box-sizing: border-box;}
 
-* {box-sizing: border-box;}
+			html, body, main {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				width: 100%;
+				color: var(--font-color1);
+				font-family: var(--font-family1);
+				background-color: var(--background-color1);
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+			}
 
-html, body, main {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	width: 100%;
-	color: var(--font-color1);
-	font-family: var(--font-family1);
-	background-color: var(--background-color1);
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
-}
-
-.hidden {display: none !important;}
-</style>
-<script type="application/json">
-[
-	["sklaverei", "Sklaverei in der Antike"]
-]
-</script>
-</head>
-<body>
-<main class="js-main hidden">
-<div data-page="index" class="page hidden">
-	<header>
-		<h1 class="h1-welcome">Willkommen zu Latein und Co.</h1>
-		<h2 class="h2-choose">Wähle dein Thema!</h2>
-	</header>
-	<ul class="js-topics topics"></ul>
-	<footer class="hidden">
-		<button class="smallbutton" data-anchor="ueber">Über mich</button>
-	</footer>
-</div>
-<div data-page="über" class="page hidden"></div>
-<div data-page="laden" class="page hidden">
-	<h1 class="h1-loading">Lade</h1>
-</div>
-<div data-page="einfuehrung" class="js-introduction page hidden"></div>
-<div data-page="aktivitaet" class="js-activity activity center page hidden"></div>
-<div data-page="text" class="js-text center page hidden"></div>
-<div data-page="quiz" class="js-quiz page hidden"></div>
-<div data-page="ergebnisse" class="js-results page hidden"></div>
-<div data-page="quellen" class="js-sources sources page hidden"></div>
-</main>
-<link rel="stylesheet" href="/main.css">
-</body>
+			.hidden {display: none !important;}
+		</style>
+	</head>
+	<body>
+		<main class="js-main">
+			<div data-page="index" class="js-index index page hidden">
+				<header>
+					<h1 class="h1-welcome">Willkommen zu Latein und Co.</h1>
+					<h2 class="h2-choose">Wähle dein Thema!</h2>
+				</header>
+				<ul class="js-topics topics"></ul>
+				<footer>
+					von <a href="https://github.com/adrianchroust/latein-und-co">Adrian Chroust</a>
+				</footer>
+			</div>
+			<div data-page="js-loading laden" class="page">
+				<h1 class="h1-loading">Lade</h1>
+			</div>
+			<div data-page="einfuehrung" class="js-introduction introduction page hidden"></div>
+			<div data-page="aktivitaet" class="js-activity activity center page hidden"></div>
+			<div data-page="text" class="js-text text center page hidden"></div>
+			<div data-page="quiz" class="js-quiz quiz page hidden"></div>
+			<div data-page="ergebnisse" class="js-results results page hidden"></div>
+			<div data-page="quellen" class="js-sources sources sources page hidden"></div>
+		</main>
+		<link rel="stylesheet" href="/main.css">
+	</body>
 </html>

@@ -5,10 +5,12 @@ createTextNode = document.createTextNode.bind(document),
 
 hidden = 'hidden',
 content = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'],
-media = ['img', 'iframe'],
+media = ['img'],
 addClass = (element, className = hidden) => element.classList.add(className),
 removeClass = (element, className = hidden) => element.classList.remove(className),
-wait = seconds => new Promise(resolve => setTimeout(resolve, seconds));
+wait = seconds => new Promise(resolve => setTimeout(resolve, seconds)),
+
+data = fetch('/data.json').then(response => response.json());
 
 function pageSelect()  {
 	const page = location.hash ? location.hash.substr(1).split('-') : ['index'];
@@ -22,13 +24,21 @@ function pageSelect()  {
 
 async function loadTopic(event) {
 	const topic = event.currentTarget.dataset.topic,
-	topicData = await (await fetch(`/data/${topic}/source.json`)).json(),
+	home = querySelector('.js-index'),
 	introduction = querySelector('.js-introduction'),
 	activity = querySelector('.js-activity'),
 	text = querySelector('.js-text'),
 	quiz = querySelector('.js-quiz'),
 	results = querySelector('.js-results'),
 	sources = querySelector('.js-sources');
+
+	let topicData;
+	for (let topicItem of await data) {
+		if (topicItem.name == topic) {
+			topicData = topicItem;
+			break;
+		}
+	}
 
 	while (introduction.firstChild) introduction.removeChild(introduction.firstChild);
 	while (activity.firstChild) activity.removeChild(activity.firstChild);
@@ -37,22 +47,23 @@ async function loadTopic(event) {
 	while (results.firstChild) results.removeChild(results.firstChild);
 	while (sources.firstChild) sources.removeChild(sources.firstChild);
 
-	topicData.introduction.forEach(item => {
-		const element = createElement(item[0]);
-		if (content.includes(item[0])) element.innerHTML = item[1].replace(/>/gm, '</strong>').replace(/<(?!\/strong>)/gm, '<strong>');
-		else if (media.includes(item[0])) {
-			element.src = `/data/${topic}/${item[1]}`;
-			if (item[2]) element.alt = element.title = item[2];
+	topicData.start.forEach(item => {
+		const element = createElement(item.type);
+		if (content.includes(item.type)) element.innerHTML = item.text.replace(/>/gm, '</strong>').replace(/<(?!\/strong>)/gm, '<strong>');
+		else if (media.includes(item.type)) {
+			element.src = item.url;
+			if (item.text) element.alt = element.title = item.text;
 		}
 		introduction.appendChild(element);
 	});
 
 	const contentList = createElement('ul'),
 	contentItems = [
-		[activity, 'Aktivität'],
-		[quiz, 'Quiz'],
-		[text, 'Text'],
-		[sources, 'Quellen']
+		...(topicData.activity.length ? [[activity, 'Aktivität']] : []),
+		...(topicData.quiz.length ? [[quiz, 'Quiz']] : []),
+		...(topicData.activity.length ? [[text, 'Text']] : []),
+		...(topicData.sources.length ? [[sources, 'Quellen']] : []),
+		[home, 'Zurück zur Übersicht']
 	];
 
 	contentList.className = 'topics overview';
@@ -60,7 +71,7 @@ async function loadTopic(event) {
 		const li = createElement('li'),
 		button = createElement('button');
 
-		button.dataset.anchor = `${item[0].dataset.page}${(item[0] === activity || item[0] === quiz) ? '-1' : ''}`;
+		button.dataset.anchor = item[0] === home ? '' : `${item[0].dataset.page}${(item[0] === activity || item[0] === quiz) ? '-1' : ''}`;
 		button.appendChild(createTextNode(item[1]));
 		li.appendChild(button);
 		contentList.appendChild(li);
@@ -76,13 +87,13 @@ async function loadTopic(event) {
 
 		let delay = 0;
 		item.forEach(subItem => {
-			const element = createElement(subItem[1]);
-			delay += subItem[0];
+			const element = createElement(subItem.type);
+			delay += subItem.delay || 0;
 
-			if (content.includes(subItem[1])) element.innerHTML = subItem[2].replace(/>/gm, '</strong>').replace(/<(?!\/strong>)/gm, '<strong>');
-			else if (media.includes(subItem[1])) {
-				element.src = `/data/${topic}/${subItem[2]}`;
-				if (subItem[3]) element.alt = element.title = subItem[3];
+			if (content.includes(subItem.type)) element.innerHTML = subItem.text.replace(/>/gm, '</strong>').replace(/<(?!\/strong>)/gm, '<strong>');
+			else if (media.includes(subItem.type)) {
+				element.src = subItem.url;
+				if (subItem.text) element.alt = element.title = subItem.text;
 			}
 
 			text.appendChild(element);
@@ -90,16 +101,16 @@ async function loadTopic(event) {
 			const elementClone = element.cloneNode(true);
 
 			elementClone.className = 'activity-animation';
-			elementClone.style.animationDelay = `${delay}s`;
+			elementClone.style.animationDelay = `${delay}ms`;
 
 			subActivity.appendChild(elementClone);
 		});
 		
 		const button = createElement('button');
 		button.appendChild(createTextNode('Weiter'));
-		button.className = 'activity-animation continuebutton';
+		button.className = 'continuebutton button-animation';
 		button.dataset.anchor = `aktivitaet-${subnumber}`;
-		button.style.animationDelay = `${delay + 0.5}s`;
+		button.style.animationDelay = `${500 + delay}ms`;
 
 		subActivity.appendChild(button);
 		activity.appendChild(subActivity);
@@ -140,8 +151,8 @@ async function loadTopic(event) {
 
 		subActivity.dataset.subpage = subnumber++;
 		addClass(subActivity, 'activity-animation');
-		question.appendChild(createTextNode(item[0]));
-		answer.appendChild(createTextNode(item[0]));
+		question.appendChild(createTextNode(item.question));
+		answer.appendChild(createTextNode(item.question));
 
 		const continueButton = createElement('button');
 		continueButton.appendChild(createTextNode('Weiter'));
@@ -150,20 +161,20 @@ async function loadTopic(event) {
 		continueButton.disabled = true;
 		
 		let choice = 1;
-		item.slice(1).forEach(response => {
+		item.answers.forEach(response => {
 			const button = createElement('button'),
 			answerButton = createElement('button');
 
 			button.dataset.choice = choice;
-			button.dataset.correct = response[1];
+			button.dataset.correct = response.correct;
 			answerButton.dataset.choice = choice++;
 
-			button.appendChild(createTextNode(response[0]));
-			answerButton.appendChild(createTextNode(response[0]));
+			button.appendChild(createTextNode(response.text));
+			answerButton.appendChild(createTextNode(response.text));
 			questionList.appendChild(button);
 			answerList.appendChild(answerButton);
 
-			addClass(answerButton, response[1] ? 'correctanswer' : 'wronganswer');
+			addClass(answerButton, response.correct ? 'correctanswer' : 'wronganswer');
 
 			button.addEventListener('click', event => {
 				event.currentTarget.parentElement.querySelectorAll('.selectedbutton').forEach(element => removeClass(element, 'selectedbutton'));
@@ -176,7 +187,7 @@ async function loadTopic(event) {
 					removeClass(element, 'wrongchoice');
 				});
 
-				addClass(answerList.querySelector(`[data-choice="${event.currentTarget.dataset.choice}"]`), event.currentTarget.dataset.correct == "true" ? 'correctchoice' : 'wrongchoice');
+				addClass(answerList.querySelector(`[data-choice="${event.currentTarget.dataset.choice}"]`), event.currentTarget.dataset.correct == 'true' ? 'correctchoice' : 'wrongchoice');
 			}, false);
 		});
 
@@ -205,9 +216,9 @@ async function loadTopic(event) {
 		const p = createElement('p'),
 		a = createElement('a');
 
-		a.appendChild(createTextNode(item[0]));
-		if (item[1]) {
-			a.href = item[1];
+		a.appendChild(createTextNode(item.text));
+		if (item.url) {
+			a.href = item.url;
 			a.target = '_blank';
 			a.rel = 'noopener norefferer';
 		}
@@ -216,26 +227,24 @@ async function loadTopic(event) {
 		sources.appendChild(p);
 	});
 
-	history.replaceState(null, document.title, '#einfuehrung');
+	history.pushState(null, document.title, '#einfuehrung');
 	pageSelect();
 }
 
 
-const topicList = querySelector('.js-topics'),
-topics = JSON.parse(querySelector('script[type="application/json"]').innerHTML);
+const topicList = querySelector('.js-topics');
 
-topics.forEach(topic => {
+data.then(topics => topics.forEach(topic => {
 	const li = createElement('li'),
 	button = createElement('button');
 
-	button.appendChild(createTextNode(topic[1]));
-	button.dataset.anchor = 'laden';
-	button.dataset.topic = topic[0]
+	button.appendChild(createTextNode(topic.name));
+	button.dataset.topic = topic.name;
 	button.addEventListener('click', loadTopic, false);
 
 	li.appendChild(button);
 	topicList.appendChild(li);
-});
+}));
 
 function buttonMap (document) {
 	document.querySelectorAll('[data-anchor]').forEach(element => element.addEventListener('click', event => location.hash = event.currentTarget.dataset.anchor), false);
@@ -243,6 +252,5 @@ function buttonMap (document) {
 
 buttonMap(document);
 history.replaceState(null, document.title, `${location.origin}${location.pathname}`);
-pageSelect();
 window.addEventListener('hashchange', pageSelect, false);
-removeClass(querySelector('.js-main'));
+data.then(pageSelect);
