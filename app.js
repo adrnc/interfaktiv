@@ -6,7 +6,7 @@ createTextNode = document.createTextNode.bind(document),
 hidden = 'hidden',
 addClass = (element, className = hidden) => element.classList.add(className),
 removeClass = (element, className = hidden) => element.classList.remove(className),
-wait = seconds => new Promise(resolve => setTimeout(resolve, seconds)),
+wait = ms => new Promise(resolve => setTimeout(resolve, ms)),
 
 data = fetch('/data.json')
 	.then(response => response.json())
@@ -85,19 +85,24 @@ async function loadTopic(event) {
 		subActivity.dataset.subpage = subnumber++;
 		subActivity.className = 'hidden';
 
-		let delay = 0;
-		let count = 0;
+		let delay = 0,
+		currentDelay = delay,
+		count = 0;
 		[item.title, ...(item.subtitle ? [item.subtitle] : []), ...item.elements].forEach(subItem => {
 			subItem = subItem.trim();
-			const isImg = subItem.match(/^https?:\/\//g);
-			const tag = item.section && count == 0 ? 'h1' : count == 0 || (count == 1 && item.section && item.subtitle) ? 'h2' : isImg ? 'img' : 'p';
-			const isValidImg = isImg && tag != 'h1' && tag != 'h2';
-			const element = createElement(tag);
-			const currentDelay = delay;
-			delay += isValidImg ? 300 : subItem.length * 20;
+			const isImg = subItem.match(/^https?:\/\//g),
+			tag = item.section && count == 0 ? 'h1' : count == 0 || (count == 1 && item.section && item.subtitle) ? 'h2' : isImg ? 'img' : 'p',
+			isValidImg = isImg && tag != 'h1' && tag != 'h2',
+			element = createElement(tag);
+
+			currentDelay = delay;
+			delay += isValidImg ? 300 : subItem.length * (count == 0 ? 40 : 20);
 			count++;
 
-			if (isValidImg) element.src = subItem;
+			if (isValidImg) {
+				element.src = subItem;
+				element.setAttribute('aria-hidden', 'true');
+			}
 			else element.innerHTML = subItem.replace(/>/gm, '</strong>').replace(/<(?!\/strong>)/gm, '<strong>');
 
 			text.appendChild(element);
@@ -109,12 +114,33 @@ async function loadTopic(event) {
 
 			subActivity.appendChild(elementClone);
 		});
-		
-		const button = createElement('button');
-		button.appendChild(createTextNode('Weiter'));
+
+		const button = createElement('button'),
+		skipSpan = createElement('span'),
+		continueSpan = createElement('span'),
+		delayOffset = currentDelay + 800;
+
+		skipSpan.className = 'skipspan';
+		continueSpan.className = 'continuespan';
+		skipSpan.appendChild(createTextNode('Überspringen'));
+		continueSpan.appendChild(createTextNode('Weiter'));
+		skipSpan.style.animationDelay = `${delayOffset}ms`;
+		continueSpan.style.animationDelay = `${delayOffset}ms`;
+
+		button.setAttribute('data-ignore', '');
+		button.appendChild(skipSpan);
+		button.appendChild(continueSpan);
 		button.className = 'continuebutton button-animation';
 		button.dataset.anchor = `aktivitaet-${subnumber}`;
-		button.style.animationDelay = `${500 + delay}ms`;
+
+		button.addEventListener('click', async event => {
+			if (getComputedStyle(skipSpan).visibility == 'visible') {
+				addClass(subActivity, 'skip-animation');
+				await wait(delayOffset);
+				removeClass(subActivity, 'skip-animation');
+			}
+			else buttonClick(event);
+		}, false);
 
 		subActivity.appendChild(button);
 		activity.appendChild(subActivity);
@@ -251,7 +277,11 @@ data.then(topics => topics.forEach(topic => {
 }));
 
 function buttonMap (document) {
-	document.querySelectorAll('[data-anchor]').forEach(element => element.addEventListener('click', event => location.hash = event.currentTarget.dataset.anchor), false);
+	document.querySelectorAll('[data-anchor]:not([data-ignore])').forEach(element => element.addEventListener('click', buttonClick, false));
+}
+
+function buttonClick(event) {
+	location.hash = event.currentTarget.dataset.anchor;
 }
 
 buttonMap(document);

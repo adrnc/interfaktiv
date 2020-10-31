@@ -1,5 +1,5 @@
 main {
-	font-size: 2rem;
+	font-size: 1.6rem;
 }
 
 .index, .activity, .quiz {
@@ -60,7 +60,7 @@ button {
 	width: 100%;
 	padding: 1.5rem;
 	margin: 0.5rem 0;
-	font-size: 2rem;
+	font-size: 1.8rem;
 	border: none;
 	background-color: var(--background-color2);
 	cursor: pointer;
@@ -81,23 +81,44 @@ button:hover {
 	position: fixed;
 	z-index: 10;
 	bottom: 3rem;
-	left: calc(50% - 5rem);
-	width: 10rem;
+	left: calc(50% - 8rem);
+	width: 16rem;
 	opacity: 0.8;
+	text-align: center;
 }
 
-.continuebutton.button-animation {
-	opacity: 0.2;
-	animation: button-animation 0.2s forwards;
+.continuebutton.button-animation > .skipspan {
+	animation: hideskip 0s forwards;
 }
 
-@keyframes button-animation {
-	from {opacity: 0.2;}
-	to {opacity: 0.8;}
+@keyframes hideskip {
+	from, to {
+		left: 0;
+		position: absolute;
+		visibility: hidden;
+	}
+}
+
+.continuebutton.button-animation > .continuespan {
+	left: 0;
+	position: absolute;
+	visibility: hidden;
+	animation: showcontinue 0s forwards;
+}
+
+@keyframes showcontinue {
+	from, to {
+		position: static;
+		visibility: visible;
+	}
+}
+
+.skip-animation .activity-animation, .skip-animation .skipspan, .skip-animation .continuespan {
+	animation-delay: 0s !important;
 }
 
 .overview li:first-child button, .mainbutton {
-	font-size: 2.5rem;
+	font-size: 2.3rem;
 	font-weight: bold;
 }
 
@@ -137,7 +158,7 @@ h2, h3, h4, h5, h6 {
 }
 
 p {
-	font-size: 2rem;
+	font-size: 1.8rem;
 	margin: 0 0 1.5rem 0;
 }
 
