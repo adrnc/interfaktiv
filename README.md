@@ -1,2 +1,2 @@
 # interFaktiv
-ist eine [interaktive Lern-Website](https://interfaktiv.acdn.dev/) für Wissensbegeisterte!
+is an [interactive website](https://interfaktiv.acdn.dev/) made for learning. It is only available in German, however.
