@@ -70,6 +70,7 @@ async function loadTopic(event) {
 	contentItems.forEach(item => {
 		const li = createElement('li'),
 		button = createElement('button');
+		if (item[0] === activity) button.className = 'mainbutton';
 
 		button.dataset.anchor = item[0] === home ? '' : `${item[0].dataset.page}${(item[0] === activity || item[0] === quiz) ? '-1' : ''}`;
 		button.appendChild(createTextNode(item[1]));
@@ -167,7 +168,7 @@ async function loadTopic(event) {
 	homeButton.appendChild(createTextNode('Zurück zum Start'));
 
 	lastActivity.appendChild(whatNext);
-	lastActivity.appendChild(quizButton);
+	if (topicData.quiz.length) lastActivity.appendChild(quizButton);
 	lastActivity.appendChild(homeButton);
 	activity.appendChild(lastActivity);
 	buttonMap(activity);
