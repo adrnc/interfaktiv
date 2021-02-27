@@ -88,7 +88,11 @@ async function loadTopic(event) {
 		let delay = 0,
 		currentDelay = delay,
 		count = 0;
-		[item.title, ...(item.subtitle ? [item.subtitle] : []), ...item.elements].forEach(subItem => {
+		[
+			item.title,
+			...(item.subtitle ? [item.subtitle] : []),
+			...item.text.split(/^\s*$/gm)
+		].forEach(subItem => {
 			subItem = subItem.trim();
 			const isImg = subItem.match(/^https?:\/\//g),
 			tag = item.section && count == 0 ? 'h1' : count == 0 || (count == 1 && item.section && item.subtitle) ? 'h2' : isImg ? 'img' : 'p',
