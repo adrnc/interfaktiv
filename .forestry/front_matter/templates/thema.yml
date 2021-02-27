@@ -49,11 +49,11 @@ fields:
         schema:
           format: markdown
       label: Text
-      description: Absätze werden durch leere Zeilen getrennt.  <br>Wichtiger Text
+      description: Absätze werden durch leere Zeilen getrennt. <br>Wichtiger Text
         kann mit <strong>&lt;solchen Klammern&gt; </strong>hervorgehoben werden.<br><br>Bilder
         können eingefügt werden, indem man eine URL in einen eigenen Absatz schreibt,
         beispielsweise:<br><br><em>... Absatz 1 ...<br><br>... https://example.org/bild.jpg
-        ...<br><br>... Absatz 2 ...</em>
+        ...<br><br>... Absatz 2 ...<br></em>
     config:
       min: 
       max: 
