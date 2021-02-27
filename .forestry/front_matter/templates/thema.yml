@@ -52,8 +52,9 @@ fields:
       description: Absätze werden durch leere Zeilen getrennt. <br>Wichtiger Text
         kann mit <strong>&lt;solchen Klammern&gt; </strong>hervorgehoben werden.<br><br>Bilder
         können eingefügt werden, indem man eine URL in einen eigenen Absatz schreibt,
-        beispielsweise:<br><br><em>... Absatz 1 ...<br><br>... https://example.org/bild.jpg
-        ...<br><br>... Absatz 2 ...<br></em>
+        beispielsweise:<br><br><em>... Absatz 1 ...<br><br>... </em><a href="https://example.org/bild.jpg"
+        title="" target="_blank">https://example.org/bild.jpg</a><em> ...<br><br>...
+        Absatz 2 ...</em>
     config:
       min: 
       max: 
