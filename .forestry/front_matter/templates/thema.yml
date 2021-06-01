@@ -18,6 +18,7 @@ fields:
     name: archived
     label: Archiviert
     default: false
+    description: Versteckt das Thema auf der Hauptseite.
   - name: activity
     type: field_group_list
     fields:
